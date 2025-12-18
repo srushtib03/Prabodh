@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Choose Role | PRABODH</title>
+
+<style>
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#eef2ff,#f8fbff);
+}
+
+.nav{
+  padding:16px 40px;
+  background:white;
+  display:flex;
+  align-items:center;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:#2563eb;
+}
+
+.container{
+  max-width:900px;
+  margin:60px auto;
+  text-align:center;
+}
+h1{color:#1e3a8a;}
+p{color:#475569;margin-bottom:40px;}
+
+.cards{
+  display:flex;
+  gap:30px;
+  justify-content:center;
+}
+.card{
+  background:white;
+  width:260px;
+  padding:30px;
+  border-radius:16px;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+.card h3{margin-top:15px;}
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+  <div class="logo">PRABODH</div>
+</div>
+
+<div class="container">
+  <h1>Who are you?</h1>
+  <p>Select your role to customize your learning experience</p>
+
+  <div class="cards">
+    <div class="card" onclick="goStudent()">
+      🎓
+      <h3>Student</h3>
+      <p>I want to learn</p>
+    </div>
+
+    <div class="card">
+      👩‍🏫
+      <h3>Teacher</h3>
+      <p>Manage students</p>
+    </div>
+
+    <div class="card">
+      👨‍👩‍👦
+      <h3>Parent</h3>
+      <p>Track progress</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function goStudent(){
+  window.location.href="disability.html";
+}
+</script>
+
+</body>
+</html>

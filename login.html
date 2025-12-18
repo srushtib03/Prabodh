@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRABODH | Awakening Knowledge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --accent: #f59e0b;
+            --glass: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            background: #0f172a;
+            overflow: hidden;
+        }
+
+        /* Animated Background Blobs */
+        .blob {
+            position: absolute; width: 500px; height: 500px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            filter: blur(80px); border-radius: 50%; z-index: -1;
+            animation: move 20s infinite alternate;
+        }
+        @keyframes move {
+            from { transform: translate(-20%, -20%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        .login-container {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 3.5rem; border-radius: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            width: 100%; max-width: 450px;
+            text-align: center; border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+        }
+
+        h1 { font-size: 3.5rem; font-weight: 800; margin: 0; background: linear-gradient(to right, #4338ca, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tagline { color: #475569; font-weight: 500; margin-bottom: 2rem; }
+
+        .step { display: none; animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .step.active { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: scale(0.9) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .choice-card {
+            background: white; border: 2px solid transparent;
+            padding: 18px; margin: 12px 0; border-radius: 20px;
+            cursor: pointer; font-size: 1.1rem; font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .choice-card:hover {
+            border-color: var(--primary); transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .input-group input {
+            width: 100%; padding: 15px; border-radius: 15px;
+            border: 2px solid #e2e8f0; margin-bottom: 15px;
+            font-size: 1rem; box-sizing: border-box; outline: none;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white; border: none; width: 100%; padding: 18px;
+            border-radius: 18px; font-weight: 700; cursor: pointer;
+            font-size: 1.1rem; box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+<div class="blob"></div>
+
+<div class="login-container">
+    <h1>PRABODH</h1>
+    <p class="tagline">Awakening Potential Through Knowledge</p>
+
+    <div id="step-role" class="step active">
+        <h3 style="color:#1e293b">Who are you?</h3>
+        <div class="choice-card" onclick="next('step-role', 'step-mode')"><span>🎓</span> I am a Student</div>
+        <div class="choice-card" onclick="window.location.href='/teacher'"><span>👨‍🏫</span> I am a Teacher</div>
+        <div class="choice-card" onclick="alert('Parent Portal Opening Soon')"><span>👪</span> I am a Parent</div>
+    </div>
+
+    <div id="step-mode" class="step">
+        <h3 style="color:#1e293b">Select Learning Mode</h3>
+        <div class="choice-card" onclick="setMode('blind')"><span>👁️</span> Visual Impairment (Blind)</div>
+        <div class="choice-card" onclick="setMode('deaf')"><span>👂</span> Hearing Impairment (Deaf)</div>
+        <div class="choice-card" onclick="setMode('dumb')"><span>🙊</span> Speech Impairment (Dumb)</div>
+        <div class="choice-card" onclick="setMode('default')"><span>📚</span> General Learning</div>
+        <p onclick="next('step-mode', 'step-role')" style="cursor:pointer; color:var(--primary); font-size:0.9rem">← Change Role</p>
+    </div>
+
+    <div id="step-login" class="step">
+        <h3 style="color:#1e293b">Identity Verification</h3>
+        <form action="/login-user" method="post">
+            <input type="hidden" name="mode" id="final-mode">
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Enter Full Name" required>
+                <input type="tel" name="phone" placeholder="Enter Phone Number" required>
+            </div>
+            <button type="submit" class="submit-btn">Unlock My Dashboard</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function next(curr, nxt) {
+        document.getElementById(curr).classList.remove('active');
+        document.getElementById(nxt).classList.add('active');
+    }
+    function setMode(mode) {
+        document.getElementById('final-mode').value = mode;
+        next('step-mode', 'step-login');
+    }
+</script>
+</body>
+</html>
